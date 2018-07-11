@@ -1,0 +1,13 @@
+C:\Users\rgs\NIRAS\Privat\DM\Program\userInputTest\userInputTest\obj\Debug\userInputTest.csprojAssemblyReference.cache
+C:\Users\rgs\NIRAS\Privat\DM\Program\userInputTest\userInputTest\obj\Debug\userInputTest.Form1.resources
+C:\Users\rgs\NIRAS\Privat\DM\Program\userInputTest\userInputTest\obj\Debug\userInputTest.Properties.Resources.resources
+C:\Users\rgs\NIRAS\Privat\DM\Program\userInputTest\userInputTest\obj\Debug\userInputTest.csproj.GenerateResource.cache
+C:\Users\rgs\NIRAS\Privat\DM\Program\userInputTest\userInputTest\obj\Debug\userInputTest.csproj.CoreCompileInputs.cache
+C:\Users\rgs\NIRAS\Privat\DM\Program\userInputTest\userInputTest\bin\Debug\userInputTest.exe.config
+C:\Users\rgs\NIRAS\Privat\DM\Program\userInputTest\userInputTest\bin\Debug\userInputTest.exe
+C:\Users\rgs\NIRAS\Privat\DM\Program\userInputTest\userInputTest\bin\Debug\userInputTest.pdb
+C:\Users\rgs\NIRAS\Privat\DM\Program\userInputTest\userInputTest\obj\Debug\userInputTest.exe
+C:\Users\rgs\NIRAS\Privat\DM\Program\userInputTest\userInputTest\obj\Debug\userInputTest.pdb
+C:\Users\rgs\NIRAS\Privat\DM\Program\userInputTest\userInputTest\bin\Debug\itextsharp.dll
+C:\Users\rgs\NIRAS\Privat\DM\Program\userInputTest\userInputTest\bin\Debug\itextsharp.xml
+C:\Users\rgs\NIRAS\Privat\DM\Program\userInputTest\userInputTest\obj\Debug\userInputTest.csproj.CopyComplete
