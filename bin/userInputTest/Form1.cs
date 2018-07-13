@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.IO;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+using iTextSharp.text.pdf.parser;
 
 
 namespace userInputTest
@@ -43,7 +44,7 @@ namespace userInputTest
         {
 
         }
-
+        // --##-- Reset function --##--
         private void ResetTextBox()
         {
             Action<Control.ControlCollection> func = null;
@@ -58,12 +59,11 @@ namespace userInputTest
             };
             func(Controls);
         }
-
+        // --##-- Reset button --##--
         private void button2_Click(object sender, EventArgs e)
         {
             ResetTextBox();
         }
-
         private void CreateNewCharacter_Click(object sender, EventArgs e)
         {
             Character character = new Character();
@@ -78,30 +78,72 @@ namespace userInputTest
 
         private void button3_Click(object sender, EventArgs e)
         {
-            using (OpenFileDialog ofd = new OpenFileDialog() { Filter = "PDF files|*.pdf", ValidateNames = true, Multiselect = false })
+            OpenFileDialog dlg = new OpenFileDialog();
+            string filePath;
+            dlg.Filter = "PDF Files(*.PDF)|*.PDF|All Files(*.*)|*.*";
+
+            if (dlg.ShowDialog() == DialogResult.OK)
             {
-                if(ofd.ShowDialog() == DialogResult.OK)
+                filePath = dlg.FileName.ToString();
+
+
+                string strText = string.Empty;
+                try
                 {
-                    try
+                    PdfReader reader = new PdfReader(filePath);
+                    for (int page = 1; page <= reader.NumberOfPages; page++)
                     {
-                        iTextSharp.text.pdf.PdfReader reader = new iTextSharp.text.pdf.PdfReader(ofd.FileName);
-                        Console.WriteLine(reader);
-                        StringBuilder sb = new StringBuilder();
-                        for(int i = 1; i <= reader.NumberOfPages; i++)
-                        {
-                            sb.Append(iTextSharp.text.pdf.parser.PdfTextExtractor.GetTextFromPage(reader, 1));
-                        }
-                        richTextBox1.Text = sb.ToString();
-                        reader.Close();
+                        ITextExtractionStrategy its = new iTextSharp.text.pdf.parser.lo
+                        String s = PdfTextExtractor.GetTextFromPage(reader, page, its);
+
+                        s = Encoding.UTF8.GetString(ASCIIEncoding.Convert(Encoding.Default,))
+                        strText = strText + s;
+                        richTextBox1.Text = strText;
                     }
-                    catch(Exception ex)
-                    {
-                        MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    reader.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
                 }
             }
-        }
+            //using (OpenFileDialog ofd = new OpenFileDialog() { Filter = "PDF files|*.pdf", ValidateNames = true, Multiselect = false })
+            //{
+                //if(ofd.ShowDialog() == DialogResult.OK)
+                //{
+                    
+                    //try
+                    //{
+                        
+                        //iTextSharp.text.pdf.PdfReader reader = new iTextSharp.text.pdf.PdfReader(ofd.FileName);
+                        //Console.WriteLine(reader);
+                        //StringBuilder sb = new StringBuilder();
+                        //Console.WriteLine(sb);
+                        //for (int i = 1; i <= 10; i++)
+                        //{
+                        //    sb.Append(reader.GetPdfObject(i));
+                        //    sb.AppendLine();
+                        // }
+                        //sb.Append(reader.GetPdfObject(1));
+                        //sb.AppendLine();
+                        //sb.Append(reader.GetPdfObject(2));
+                        //sb.Append(reader.GetPdfObject(3));
+                        //sb.Append(reader.ToString());
+                        //for (int i = 1; i <= reader.NumberOfPages; i++)
+                        //{
+                        //sb.Append(iTextSharp.text.pdf.parser.PdfTextExtractor.GetTextFromPage(reader, 1));
 
+                    //}
+                        //richTextBox1.Text = sb.ToString();
+                        //reader.Close();
+                    //}
+                    //catch(Exception ex)
+                    //{
+                        //MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //}
+                //}
+            //}
+        }
         private void CreatePDF_Click(object sender, EventArgs e)
         {
             Document doc = new Document(iTextSharp.text.PageSize.A4);
@@ -125,6 +167,7 @@ namespace userInputTest
             doc.Add(list);
 
             doc.Close(); //Close Document 
+            System.Diagnostics.Process.Start("Test.pdf");
         }
     }
 }
