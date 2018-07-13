@@ -108,9 +108,22 @@ namespace userInputTest
             PdfWriter wri = PdfWriter.GetInstance(doc, new FileStream("Test.pdf", FileMode.Create));
             doc.Open();//Open Document to write
 
-            Paragraph paragraph = new Paragraph("This is my first line using Paragraph.\n hi hello");
+            Paragraph paragraph = new Paragraph("This is my first line using Paragraph.\nhi hello");
 
             doc.Add(paragraph);
+
+            List list = new List(List.UNORDERED);
+
+            list.IndentationLeft = 30f;
+
+            list.Add(new ListItem("One"));
+            list.Add("Two");
+            list.Add("Three");
+            list.Add("Four");
+            list.Add("Five");
+
+            doc.Add(list);
+
             doc.Close(); //Close Document 
         }
     }
